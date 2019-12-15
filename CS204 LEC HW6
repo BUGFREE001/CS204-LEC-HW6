@@ -1,0 +1,67 @@
+
+CS 204 Lecture HW6
+
+
+#1
+
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char name[100];
+    int id;
+} student;
+
+void renew(student s) {
+    for (int i = 0; i < strlen(s.name); ++i) {
+        if (s.name[i] >= 'a' && s.name[i] <= 'z') {
+            s.name[i] -= 32;
+        }
+    }
+    s.id += 10000;
+    printf("%d %s\n", s.id, s.name);
+}
+
+int main() {
+    student s;
+    printf("Enter student id and name: ");
+    scanf("%d", &(s.id));
+    scanf("%s", s.name);
+    renew(s);
+    return 0;
+}
+
+
+
+----------------------------------------------------------------------------------
+
+
+
+#2
+
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char name[100];
+    int id;
+} student;
+
+void renew(student *s) {
+    for (int i = 0; i < strlen(s->name); ++i) {
+        if (s->name[i] >= 'a' && s->name[i] <= 'z') {
+            s->name[i] -= 32;
+        }
+    }
+    s->id += 10000;
+}
+
+int main() {
+    student s;
+    printf("Enter student id and name: ");
+    scanf("%d", &(s.id));
+    scanf("%s", s.name);
+    renew(&s);
+    printf("%d %s\n", s.id, s.name);
+    return 0;
+}
