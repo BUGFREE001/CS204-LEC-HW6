@@ -142,10 +142,72 @@ printf("\n");
 
 
 
+------------------------------------------------------------------------------------------------------------------------------
 
 
 
+#4
 
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+
+#5
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+double getDoubleFromString(char str[],int s, int e){
+char str1[e-s+1];
+for(int i = s; i <= e; i++)
+str1[i-s] = str[i];
+double d = atof(str1);
+return d;
+}
+
+int main(){
+printf("Enter the String\n");
+  
+char str[100];
+  
+fgets(str, 100, stdin);
+  
+int len = strlen(str);
+int i = 0;
+  
+while(i < len){
+while(i < len && !(str[i] >= '0' && str[i] <= '9')){
+i++;
+}
+int startPosition, endPosition;
+startPosition = endPosition = -1;
+  
+while(i < len && str[i] >= '0' && str[i] <= '9'){
+if(startPosition == -1)
+startPosition = i;
+endPosition = i;
+i++;
+}
+  
+if(i < len && str[i] == '.'){
+endPosition = i;
+i++;
+while(i < len && str[i] >= '0' && str[i] <= '9'){
+endPosition = i;
+i++;
+}
+}
+  
+if(startPosition != -1 && endPosition != -1){
+printf("%.6f\n", getDoubleFromString(str,startPosition, endPosition));
+}
+}
+return 0;
+}
 
 
 
